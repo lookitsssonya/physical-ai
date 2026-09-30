@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="340" viewBox="0 0 1050 340">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+    </marker>
+    <marker id="arrow-back" markerWidth="10" markerHeight="10" refX="9" refY="3"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- Заголовок -->
+  <text x="525" y="28" text-anchor="middle"
+        font-family="Arial" font-size="15" font-weight="bold" fill="#333">
+    Физический дедлайн контура: 2 мс (500 Гц)
+  </text>
+
+  <!-- PERCEPTION -->
+  <rect x="20" y="50" width="290" height="190" rx="15"
+        fill="#D6EAF8" stroke="#2E86C1" stroke-width="2"/>
+  <text x="165" y="82" text-anchor="middle"
+        font-family="Arial" font-size="16" font-weight="bold" fill="#1B4F72">PERCEPTION</text>
+  <text x="165" y="115" text-anchor="middle" font-family="Arial" font-size="12" fill="#1B4F72">qpos/qvel → шум σ</text>
+  <text x="165" y="137" text-anchor="middle" font-family="Arial" font-size="12" fill="#1B4F72">буфер задержки</text>
+  <text x="165" y="159" text-anchor="middle" font-family="Arial" font-size="12" fill="#1B4F72">комплементарный фильтр</text>
+  <text x="165" y="181" text-anchor="middle" font-family="Arial" font-size="12" fill="#1B4F72">детектор отказа</text>
+
+  <!-- Стрелка 1 -->
+  <line x1="315" y1="145" x2="355" y2="145" stroke="#333" stroke-width="2"
+        marker-end="url(#arrow)"/>
+
+  <!-- PLANNING -->
+  <rect x="360" y="50" width="290" height="190" rx="15"
+        fill="#FDEBD0" stroke="#E67E22" stroke-width="2"/>
+  <text x="505" y="82" text-anchor="middle"
+        font-family="Arial" font-size="16" font-weight="bold" fill="#7E5109">PLANNING</text>
+  <text x="505" y="115" text-anchor="middle" font-family="Arial" font-size="12" fill="#7E5109">PD высоты → тяга T</text>
+  <text x="505" y="137" text-anchor="middle" font-family="Arial" font-size="12" fill="#7E5109">PD положения → θ_des</text>
+  <text x="505" y="159" text-anchor="middle" font-family="Arial" font-size="12" fill="#7E5109">PD тангажа → момент τ</text>
+  <text x="505" y="181" text-anchor="middle" font-family="Arial" font-size="12" fill="#7E5109">ограничение |θ| ≤ 0.35</text>
+
+  <!-- Стрелка 2 -->
+  <line x1="655" y1="145" x2="695" y2="145" stroke="#333" stroke-width="2"
+        marker-end="url(#arrow)"/>
+
+  <!-- CONTROL -->
+  <rect x="700" y="50" width="330" height="190" rx="15"
+        fill="#D5F5E3" stroke="#27AE60" stroke-width="2"/>
+  <text x="865" y="82" text-anchor="middle"
+        font-family="Arial" font-size="16" font-weight="bold" fill="#1E8449">CONTROL</text>
+  <text x="865" y="115" text-anchor="middle" font-family="Arial" font-size="12" fill="#1E8449">смешивание:</text>
+  <text x="865" y="137" text-anchor="middle" font-family="Arial" font-size="12" fill="#1E8449">u_front = T + τ</text>
+  <text x="865" y="159" text-anchor="middle" font-family="Arial" font-size="12" fill="#1E8449">u_rear  = T − τ</text>
+  <text x="865" y="181" text-anchor="middle" font-family="Arial" font-size="12" fill="#1E8449">насыщение 0..8 Н; 500 Гц</text>
+
+  <!-- Обратная связь -->
+  <path d="M 865 255 Q 865 305 525 305 Q 185 305 165 255"
+        fill="none" stroke="#666" stroke-width="2"
+        stroke-dasharray="6,4" marker-end="url(#arrow-back)"/>
+  <text x="525" y="328" text-anchor="middle"
+        font-family="Arial" font-size="12" font-style="italic" fill="#666">
+    обратная связь через физику: mj_step, шаг 2 мс
+  </text>
+</svg>
