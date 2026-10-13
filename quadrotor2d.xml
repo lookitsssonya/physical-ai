@@ -1,0 +1,32 @@
+<mujoco model="quadrotor2d">
+
+  <option timestep="0.002" gravity="0 0 -9.81" integrator="Euler"/>
+
+  <default>
+    <geom rgba="0.25 0.4 0.8 1"/>
+    <site size="0.012" rgba="0.9 0.3 0.1 1"/>
+  </default>
+
+  <worldbody>
+    <geom name="ground" type="plane" size="10 10 0.1" rgba="0.9 0.9 0.9 1"/>
+    <light pos="0 0 3" dir="0 0 -1"/>
+
+    <body name="drone" pos="0 0 1">
+      <joint name="slide_x" type="slide" axis="1 0 0"/>
+      <joint name="slide_z" type="slide" axis="0 0 1"/>
+      <joint name="pitch"   type="hinge" axis="0 1 0"/>
+
+      <inertial pos="0 0 0" mass="0.5" diaginertia="0.005 0.005 0.005"/>
+
+      <geom name="frame" type="box" size="0.15 0.02 0.01"/>
+
+      <site name="rotor_l" pos="-0.15 0 0.012"/>
+      <site name="rotor_r" pos=" 0.15 0 0.012"/>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="f_l" site="rotor_l" gear="0 0 1 0 0 0" ctrlrange="0 8"/>
+    <motor name="f_r" site="rotor_r" gear="0 0 1 0 0 0" ctrlrange="0 8"/>
+  </actuator>
+</mujoco>
